@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import FooterFile from './Components/FooterFile';
+import HeroFile from './Components/HeroFile';
+import NavbarF from './Components/NavbarFile';
+import RecommendFile from './Components/RecommendedFile';
+import ScrollToTop from './Components/ScrollTopF/ScrollToTop';
+import ServicesFile from './Components/ServicesFile';
+import TestimonialsFile from './Components/TestimonialsFile';
+import scrollreveal from 'scrollreveal';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    const sr = scrollreveal({
+      origin: 'top',
+      delay: 500,
+      distance: '80px',
+      reset: 'true'
+    })
+    sr.reveal(`
+      nav,
+      #hero,
+      #services,
+      #recommended,
+      #testimonials,
+      footer`,
+      {
+        opacity: 0,
+        interval: 300,
+      }
+    );
+  }, []);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarF />
+      <HeroFile />
+      <ServicesFile />
+      <RecommendFile />
+      <TestimonialsFile />
+      <FooterFile />
+      <ScrollToTop />
     </div>
   );
 }
